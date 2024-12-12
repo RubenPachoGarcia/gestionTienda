@@ -1,0 +1,29 @@
+<div class="contenedor">
+  <h2 class="tareas">Opciones</h2> 
+
+  <ul class="list-group">
+    @for (opciones of opciones; track $index) {
+      <button class="opciones bg-dark" (click)="seleccionarOpcion(opciones)">
+        {{ opciones }}
+      </button>
+    }
+  </ul>
+
+  <div class="mt-4">
+    <h3 class="tareas text-left">Tareas {{ opcionSeleccionada }}</h3>
+    <ul class="list-group">
+      @for (tarea of tareasFiltradas; track $index) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <input type="checkbox"
+                   class="form-check-input me-2"
+                   [checked]="tarea.completada"
+                   (change)="completarTarea(tarea.id, tarea.completada)" />
+            <p class="nombre">{{tarea.nombre}}</p>
+          </div>
+          <button class="btn btn-danger btn-sm" (click)="eliminarTarea(tarea.id)">Eliminar</button>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
